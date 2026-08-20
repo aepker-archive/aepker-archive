@@ -1,0 +1,18 @@
+{
+  "nav": { "trips": "Journeys", "journal": "Journal", "about": "About", "contact": "Contact" },
+  "hero": {
+    "eyebrow": "Curated journeys · Aepker Archive",
+    "titleA": "Travel",
+    "titleEm": "slowly,",
+    "titleB": "see far.",
+    "lede": "We craft journeys into quiet landscapes – planned by hand, personally guided, never rushed.",
+    "ctaTrips": "Explore journeys",
+    "ctaContact": "Request consultation"
+  },
+  "trips": { "title": "Our journeys", "empty": "No journeys published yet – create the first one at /admin.", "from": "from", "days": "days" },
+  "journal": { "title": "Journal", "empty": "No articles published yet – the first one starts at /admin." },
+  "about": { "title": "About us", "body": "Aepker Archive is a curated travel archive. This text will soon be replaced with real content." },
+  "contact": { "title": "Contact", "body": "Write to us – we reply personally.", "email": "hello@aepker-archive.com" },
+  "footer": { "legal": "Imprint · Privacy" },
+  "langSwitch": "Deutsch"
+}

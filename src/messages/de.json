@@ -1,0 +1,18 @@
+{
+  "nav": { "trips": "Reisen", "journal": "Journal", "about": "Über uns", "contact": "Kontakt" },
+  "hero": {
+    "eyebrow": "Kuratierte Reisen · Aepker Archive",
+    "titleA": "Langsam",
+    "titleEm": "reisen,",
+    "titleB": "weit sehen.",
+    "lede": "Wir gestalten Reisen in stille Landschaften – von Hand geplant, persönlich begleitet, ohne Eile.",
+    "ctaTrips": "Reisen entdecken",
+    "ctaContact": "Beratung anfragen"
+  },
+  "trips": { "title": "Unsere Reisen", "empty": "Noch keine Reisen veröffentlicht – lege die erste unter /admin an.", "from": "ab", "days": "Tage" },
+  "journal": { "title": "Journal", "empty": "Noch keine Artikel veröffentlicht – der erste entsteht unter /admin." },
+  "about": { "title": "Über uns", "body": "Aepker Archive ist ein kuratiertes Reisearchiv. Dieser Text wird bald durch echten Inhalt ersetzt." },
+  "contact": { "title": "Kontakt", "body": "Schreiben Sie uns – wir antworten persönlich.", "email": "hallo@aepker-archive.com" },
+  "footer": { "legal": "Impressum · Datenschutz" },
+  "langSwitch": "English"
+}
