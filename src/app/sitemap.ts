@@ -2,9 +2,8 @@ import type { MetadataRoute } from 'next'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { getPathname } from '@/i18n/navigation'
-import { type AppPathname } from '@/i18n/routing'
 
-const BASE = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
+const BASE = (process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000').replace(/\/$/, '')
 
 function entry(href: Parameters<typeof getPathname>[0]['href']): MetadataRoute.Sitemap[number] {
   const de = BASE + getPathname({ locale: 'de', href })
@@ -17,8 +16,13 @@ function entry(href: Parameters<typeof getPathname>[0]['href']): MetadataRoute.S
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const staticPaths: AppPathname[] = ['/', '/reisen', '/journal', '/ueber-uns', '/kontakt']
-  const entries = staticPaths.map((p) => entry(p))
+  const entries: MetadataRoute.Sitemap = [
+    entry('/'),
+    entry('/reisen'),
+    entry('/journal'),
+    entry('/ueber-uns'),
+    entry('/kontakt'),
+  ]
 
   const payload = await getPayload({ config })
   for (const collection of ['trips', 'posts'] as const) {
