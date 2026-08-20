@@ -24,13 +24,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     entry('/kontakt'),
   ]
 
-  const payload = await getPayload({ config })
-  for (const collection of ['trips', 'posts'] as const) {
-    const pathname = collection === 'trips' ? ('/reisen/[slug]' as const) : ('/journal/[slug]' as const)
-    const { docs } = await payload.find({ collection, locale: 'de', limit: 500, depth: 0 })
-    for (const doc of docs) {
-      if (doc.slug) entries.push(entry({ pathname, params: { slug: String(doc.slug) } } as never))
+  try {
+    const payload = await getPayload({ config })
+    for (const collection of ['trips', 'posts'] as const) {
+      const pathname = collection === 'trips' ? ('/reisen/[slug]' as const) : ('/journal/[slug]' as const)
+      const { docs } = await payload.find({ collection, locale: 'de', limit: 500, depth: 0 })
+      for (const doc of docs) {
+        if (doc.slug) entries.push(entry({ pathname, params: { slug: String(doc.slug) } } as never))
+      }
     }
+  } catch {
+    // Datenbank (noch) nicht erreichbar oder leer – die statischen Seiten reichen
   }
   return entries
 }

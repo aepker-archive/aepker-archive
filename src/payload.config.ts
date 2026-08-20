@@ -4,6 +4,7 @@ import { buildConfig } from 'payload'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { s3Storage } from '@payloadcms/storage-s3'
+import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
@@ -14,6 +15,7 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
+  sharp,
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
   secret: process.env.PAYLOAD_SECRET || '',
   admin: {

@@ -8,12 +8,12 @@ import { Link } from '@/i18n/navigation'
 import { LocaleSwitcher } from '@/components/LocaleSwitcher'
 import './globals.css'
 
+// Seiten werden pro Anfrage gerendert (nicht beim Build) – so braucht der
+// Build keine Datenbank und Inhalte aus dem CMS sind sofort aktuell.
+export const dynamic = 'force-dynamic'
+
 const fraunces = Fraunces({ subsets: ['latin'], variable: '--font-display', style: ['normal', 'italic'] })
 const karla = Karla({ subsets: ['latin'], variable: '--font-body', weight: ['300', '400', '500'] })
-
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }))
-}
 
 export async function generateMetadata({
   params,
