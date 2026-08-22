@@ -37,22 +37,25 @@ export default buildConfig({
     pool: { connectionString: process.env.DATABASE_URI || '' },
   }),
   plugins: [
-    // Bild-Uploads landen in Supabase Storage (S3-kompatibel), damit sie Deployments ueberleben.
-    // Aktiviert sich automatisch, sobald S3_ENDPOINT gesetzt ist – vorher lokale Ablage (nur fuer Tests).
-    s3Storage({
-      enabled: Boolean(process.env.S3_ENDPOINT),
-      collections: { media: true },
-      bucket: process.env.S3_BUCKET || 'media',
-      config: {
-        endpoint: process.env.S3_ENDPOINT || '',
-        region: process.env.S3_REGION || 'eu-central-1',
-        credentials: {
-          accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
-          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
-        },
-        forcePathStyle: true,
-      },
-    }),
+    // S3-Storage nur laden, wenn er auch konfiguriert ist – so braucht der
+    // Admin ohne S3-Variablen keine zusätzlichen Komponenten.
+    ...(process.env.S3_ENDPOINT
+      ? [
+          s3Storage({
+            collections: { media: true },
+            bucket: process.env.S3_BUCKET || 'media',
+            config: {
+              endpoint: process.env.S3_ENDPOINT,
+              region: process.env.S3_REGION || 'eu-central-1',
+              credentials: {
+                accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
+                secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
+              },
+              forcePathStyle: true,
+            },
+          }),
+        ]
+      : []),
   ],
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
